@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-export CROSS_COMPILE=aarch64-linux-gnu-
+if [ -z "${CROSS_COMPILE}" ]; then echo "CROSS_COMPILE environment variable is not defined!"; exit 1; fi
 make rk3566-pinenote_defconfig
-./make.sh
+./make.sh "${2}"
 ./make.sh trust
