@@ -79,7 +79,7 @@ def draw_key_layout(image):
         ],
         radius=30,
         outline=0,
-        fill=255,
+        fill=220,
         width=5,
     )
 

@@ -1426,28 +1426,28 @@ static int cyttsp5ub_probe(struct udevice *dev)
 	ts->key_areas = malloc(ts->key_count * sizeof(struct key_area));
 	struct key_area *area_ptr;
 	area_ptr = ts->key_areas;
-	area_ptr->xmin = 1872 - 1550;
-	area_ptr->xmax = 1872 - 1200;
-	area_ptr->ymin = 50;
-	area_ptr->ymax = 400;
+	area_ptr->xmin = 1872 - 1800;
+	area_ptr->xmax = 1872 - 1700;
+	area_ptr->ymin = 125;
+	area_ptr->ymax = 445;
 	area_ptr->key_code = KEY_UP;
 	/* it will take at least a second from here on to initialize the epd
 	 * display, so no harm done in intializing the timer here */
 	area_ptr->last_press = get_timer(0);
 
 	area_ptr++;
-	area_ptr->xmin = 1872 - 1550;
-	area_ptr->xmax = 1872 - 1200;
-	area_ptr->ymin = 500;
-	area_ptr->ymax = 904;
+	area_ptr->xmin = 1872 - 1800;
+	area_ptr->xmax = 1872 - 1700;
+	area_ptr->ymin = 542;
+	area_ptr->ymax = 862;
 	area_ptr->key_code = KEY_ENTER;
 	area_ptr->last_press = get_timer(0);
 
 	area_ptr++;
-	area_ptr->xmax = 1872 - 1200;
-	area_ptr->xmin = 1872 - 1550;
-	area_ptr->ymin = 1004;
-	area_ptr->ymax = 1354;
+	area_ptr->xmin = 1872 - 1800;
+	area_ptr->xmax = 1872 - 1700;
+	area_ptr->ymin = 959;
+	area_ptr->ymax = 1279;
 	area_ptr->key_code = KEY_DOWN;
 	area_ptr->last_press = get_timer(0);
 
