@@ -36,14 +36,17 @@ def parse_uboot_environment():
 
 def draw_key_layout(image):
     I1 = ImageDraw.Draw(image)
-    font_explanation = ImageFont.truetype('FreeSerif.otf', 50)
+    font_explanation = ImageFont.truetype('u001-reg.ttf', 50)
     pen = ImageDraw.Draw(image)
 
+    button_width = 320
+    button_height = 100
+    starty = 1700
+
     # ################# BACK ###############
-    startx = 50
-    endx = 400
-    starty = 1200
-    endy = 1550
+    startx = 125
+    endx = startx + button_width
+    endy = starty + button_height
 
     pen.rounded_rectangle(
         [
@@ -53,21 +56,20 @@ def draw_key_layout(image):
         radius=30,
         outline=0,
         fill=255,
-        width=10,
+        width=5,
     )
 
     I1.text(
-        (160, 1350),
+        (startx + 105, starty + 18),
         "Back",
         font=font_explanation,
         fill=0,
     )
     print(startx, endx, starty, endy)
     # ################# ENTER ###############
-    startx = 500
-    endx = 1404 - 400 - 100
-    starty = 1200
-    endy = 1550
+    startx = 542
+    endx = startx + button_width
+    endy = starty + button_height
     print(startx, endx, starty, endy)
 
     pen.rounded_rectangle(
@@ -78,21 +80,20 @@ def draw_key_layout(image):
         radius=30,
         outline=0,
         fill=255,
-        width=10,
+        width=5,
     )
 
     I1.text(
-        (610, 1350),
+        (startx + 84, starty + 18),
         "ENTER",
         font=font_explanation,
         fill=0,
     )
 
     # ################# NEXT ###############
-    startx = 1404 - 400
-    endx = 1404 - 50
-    starty = 1200
-    endy = 1550
+    endx = 1404 - 125
+    startx = endx - button_width
+    endy = starty + button_height
     print(startx, endx, starty, endy)
 
     pen.rounded_rectangle(
@@ -103,11 +104,11 @@ def draw_key_layout(image):
         radius=30,
         outline=0,
         fill=255,
-        width=10,
+        width=5,
     )
 
     I1.text(
-        (1125, 1350),
+        (startx + 105, starty + 18),
         "Next",
         font=font_explanation,
         fill=0,
@@ -146,7 +147,7 @@ def render_bootmenu_logos(uboot_entries):
         background = background_empty.copy()
         image = Image.new('L', (1404, 1872), 255)
         I1 = ImageDraw.Draw(background)
-        font_explanation = ImageFont.truetype('FreeSerif.otf', 30)
+        font_explanation = ImageFont.truetype('u001-reg.ttf', 30)
 
         I1.text(
             (50, 50),
@@ -157,11 +158,11 @@ def render_bootmenu_logos(uboot_entries):
         )
 
         font_size = 65
-        font_title = ImageFont.truetype('FreeMono.otf', font_size)
+        font_title = ImageFont.truetype('u001-reg.ttf', font_size)
         text_width = None
         while font_size > 20 and (text_width is None or text_width > 1404 - 50):
             font_size -= 5
-            font_title = ImageFont.truetype('FreeMono.otf', font_size)
+            font_title = ImageFont.truetype('u001-reg.ttf', font_size)
             bbox = font_title.getbbox(title)
             print('bbox', bbox, font_size)
             text_width = bbox[2]
@@ -173,11 +174,11 @@ def render_bootmenu_logos(uboot_entries):
         )
 
         font_size = 45
-        font_cmd = ImageFont.truetype('FreeMono.otf', 40)
+        font_cmd = ImageFont.truetype('u001-reg.ttf', 40)
         text_width = None
         while font_size > 20 and (text_width is None or text_width > 1404 - 50):
             font_size -= 5
-            font_cmd = ImageFont.truetype('FreeMono.otf', font_size)
+            font_cmd = ImageFont.truetype('u001-reg.ttf', font_size)
             # import IPython
             # IPython.embed()
             bbox = font_cmd.getbbox(

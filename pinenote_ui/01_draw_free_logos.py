@@ -43,7 +43,7 @@ def generate_battery_logos(outdir):
     )
 
     battery_warning = background_empty.copy()
-    font_title = ImageFont.truetype('FreeMono.otf', 65)
+    font_title = ImageFont.truetype('u001-reg.ttf', 65)
 
     pen.text(
         (300, endy + 100),
@@ -130,7 +130,7 @@ def _save_file(outbase, image_raw):
 def generate_other_logos(outdir):
     background_empty = Image.open('pine_empty_sheet_rotated.png')
 
-    font_title = ImageFont.truetype('FreeMono.otf', 85)
+    font_title = ImageFont.truetype('u001-reg.ttf', 85)
 
     # logo_placeholder
     logo_kernel = background_empty.copy()
