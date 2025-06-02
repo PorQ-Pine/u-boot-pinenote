@@ -149,6 +149,7 @@ def render_bootmenu_logos(uboot_entries):
         I1 = ImageDraw.Draw(background)
         font_explanation = ImageFont.truetype('u001-reg.ttf', 30)
 
+        """
         I1.text(
             (50, 50),
             'Short press PWR Button to advance entries\n' +
@@ -156,6 +157,7 @@ def render_bootmenu_logos(uboot_entries):
             font=font_explanation,
             fill=0,
         )
+        """
 
         font_size = 65
         font_title = ImageFont.truetype('u001-reg.ttf', font_size)
@@ -187,6 +189,7 @@ def render_bootmenu_logos(uboot_entries):
             print('bbox', bbox, font_size)
             text_width = bbox[2]
 
+        """
         I1.text(
             (50, 900),
             cmd,
@@ -196,6 +199,7 @@ def render_bootmenu_logos(uboot_entries):
 
         if cmd.startswith('sysboot'):
             background.paste(debian, (900, 50))
+        """
 
         draw_key_layout(background)
 
