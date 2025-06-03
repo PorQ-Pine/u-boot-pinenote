@@ -15,15 +15,15 @@ def generate_battery_logos(outdir):
 
     pen = ImageDraw.Draw(background_empty)
 
-    startx = 400
-    endx = 1000
+    startx = 702 - 200
+    endx = 702 + 200
     starty = 200
-    endy = 1000
+    endy = 750
 
     pen.rounded_rectangle(
         [
-            (400, 200),
-            (1000, 1000),
+            (startx, starty),
+            (endx, endy),
         ],
         radius=30,
         outline=0,
@@ -34,7 +34,7 @@ def generate_battery_logos(outdir):
     pen.rounded_rectangle(
         [
             (startx + (endx - startx) / 2 - 70, starty - 100),
-            (startx + (endx - startx) / 2 + 70, starty + 10),
+            (startx + (endx - startx) / 2 + 70, starty + 9),
         ],
         radius=30,
         outline=0,
@@ -43,11 +43,15 @@ def generate_battery_logos(outdir):
     )
 
     battery_warning = background_empty.copy()
-    font_title = ImageFont.truetype('u001-reg.ttf', 65)
+    font_title = ImageFont.truetype('u001-reg.ttf', 85)
+
+    text = "Charging"
+    bbox = pen.textbbox((0, 0), text, font=font_title)
+    text_width = bbox[2] - bbox[0]
 
     pen.text(
-        (300, endy + 100),
-        'PineNote is charging!',
+        (702 - text_width / 2, 800),
+        text,
         font=font_title,
         fill=0,
     )
@@ -85,9 +89,12 @@ def generate_battery_logos(outdir):
         os.unlink(outdir + os.sep + filename)
 
     pen = ImageDraw.Draw(battery_warning)
+    text = "Battery low"
+    bbox = pen.textbbox((0, 0), text, font=font_title)
+    text_width = bbox[2] - bbox[0]
     pen.text(
-        (200, endy + 100),
-        'BATTERY LOW!!! RECHARGE!!!',
+        (702 - text_width / 2, 800),
+        text,
         font=font_title,
         fill=0,
     )
@@ -135,9 +142,14 @@ def generate_other_logos(outdir):
     # logo_placeholder
     logo_kernel = background_empty.copy()
     pen = ImageDraw.Draw(logo_kernel)
+
+    text = "PineNote"
+    bbox = pen.textbbox((0, 0), text, font=font_title)
+    text_width = bbox[2] - bbox[0]
+
     pen.text(
-        (300, 500),
-        'PineNote',
+        (702 - text_width / 2, 500),
+        text,
         font=font_title,
         fill=0,
     )
@@ -146,9 +158,14 @@ def generate_other_logos(outdir):
     # logo kernel
     logo_kernel = background_empty.copy()
     pen = ImageDraw.Draw(logo_kernel)
+
+    text = "Booting"
+    bbox = pen.textbbox((0, 0), text, font=font_title)
+    text_width = bbox[2] - bbox[0]
+
     pen.text(
-        (100, 500),
-        'PineNote is booting...',
+        (702 - text_width / 2, 500),
+        text,
         font=font_title,
         fill=0,
     )
@@ -158,9 +175,14 @@ def generate_other_logos(outdir):
     # logo_uboot
     logo_uboot = background_empty.copy()
     pen = ImageDraw.Draw(logo_uboot)
+
+    text = "PineNote"
+    bbox = pen.textbbox((0, 0), text, font=font_title)
+    text_width = bbox[2] - bbox[0]
+
     pen.text(
-        (300, 500),
-        'PineNote',
+        (702 - text_width / 2, 500),
+        text,
         font=font_title,
         fill=0,
     )
@@ -169,9 +191,14 @@ def generate_other_logos(outdir):
     # logo_reset
     logo_reset = background_empty.copy()
     pen = ImageDraw.Draw(logo_reset)
+
+    text = "PineNote"
+    bbox = pen.textbbox((0, 0), text, font=font_title)
+    text_width = bbox[2] - bbox[0]
+
     pen.text(
-        (300, 500),
-        'PineNote',
+        (702 - text_width / 2, 500),
+        text,
         font=font_title,
         fill=0,
     )
@@ -180,9 +207,14 @@ def generate_other_logos(outdir):
     # logo_off
     logo_off = background_empty.copy()
     pen = ImageDraw.Draw(logo_off)
+
+    text = "Powered off"
+    bbox = pen.textbbox((0, 0), text, font=font_title)
+    text_width = bbox[2] - bbox[0]
+
     pen.text(
-        (300, 500),
-        'PineNote - OFF',
+        (702 - text_width / 2, 500),
+        text,
         font=font_title,
         fill=0,
     )

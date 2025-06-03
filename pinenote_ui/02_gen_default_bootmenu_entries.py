@@ -159,7 +159,7 @@ def render_bootmenu_logos(uboot_entries):
         )
         """
 
-        font_size = 65
+        font_size = 85
         font_title = ImageFont.truetype('u001-reg.ttf', font_size)
         text_width = None
         while font_size > 20 and (text_width is None or text_width > 1404 - 50):
@@ -169,7 +169,7 @@ def render_bootmenu_logos(uboot_entries):
             print('bbox', bbox, font_size)
             text_width = bbox[2]
         I1.text(
-            (50, 600),
+            (702 - text_width / 2, 600),
             title,
             font=font_title,
             fill=0
