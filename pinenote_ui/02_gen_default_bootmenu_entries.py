@@ -169,7 +169,7 @@ def render_bootmenu_logos(uboot_entries):
             print('bbox', bbox, font_size)
             text_width = bbox[2]
         I1.text(
-            (702 - text_width / 2, 600),
+            (702 - text_width / 2, 500),
             title,
             font=font_title,
             fill=0
