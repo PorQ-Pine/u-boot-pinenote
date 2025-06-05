@@ -86,9 +86,9 @@
 
 #define ENV_BOOTMENU_ENTRIES \
 	"bootcmd=setenv stdin serial,pwr_key_stdin,touch_keys; bootmenu 15\0" \
-	"bootmenu_0=Search for extlinux.conf on all partitions=run scan_dev_for_boot_part\0" \
-	"bootmenu_1=Boot Quill OS=sysboot mmc 0:5 any ${scriptaddr} /boot/extlinux/extlinux.conf\0" \
-	"bootmenu_2=Boot Recovery OS=sysboot mmc 0:6 any ${scriptaddr} /boot/extlinux/extlinux.conf\0"
+	"bootmenu_0=Boot Quill OS=sysboot mmc 0:5 any ${scriptaddr} /boot/extlinux/extlinux.conf\0" \
+	"bootmenu_1=Boot Recovery OS=sysboot mmc 0:6 any ${scriptaddr} /boot/extlinux/extlinux.conf\0" \
+	"bootmenu_2=UMS mode=ums 0 mmc 0\0"
 
 #define CONFIG_EXTRA_ENV_SETTINGS \
 	ENV_MEM_LAYOUT_SETTINGS \
