@@ -18,9 +18,9 @@ bootcmd_mmc1=setenv devnum 1; run mmc_boot
 bootcmd_pxe=run boot_net_usb_start; dhcp; if pxe get; then pxe boot; fi
 bootcmd_usb0=setenv devnum 0; run usb_boot
 bootdelay=0
-bootmenu_0=Search for extlinux.conf on all partitions=run scan_dev_for_boot_part
-bootmenu_1=Boot Quill OS=sysboot mmc 0:5 any ${scriptaddr} /boot/extlinux/extlinux.conf
-bootmenu_2=Boot Recovery OS=sysboot mmc 0:6 any ${scriptaddr} /boot/extlinux/extlinux.conf
+bootmenu_0=Boot Quill OS=sysboot mmc 0:5 any ${scriptaddr} /boot/extlinux/extlinux.conf
+bootmenu_1=Boot Recovery OS=sysboot mmc 0:6 any ${scriptaddr} /boot/extlinux/extlinux.conf
+bootmenu_2=Kernel/FDT serial download=echo Please provide Image.gz; loady ${kernel_addr_c}; echo Please provide FDT; loady ${fdt_addr_r}; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
 cpu=armv8
 devnum=0
 devtype=mmc
@@ -29,7 +29,7 @@ efi_dtb_prefixes=/ /dtb/ /dtb/current/
 eth1addr=72:da:00:3d:54:37
 ethaddr=6e:da:00:3d:54:37
 fdt_addr_r=0x0a100000
-fdtcontroladdr=0xeb9f7ab8
+fdtcontroladdr=0xeb9f75f8
 kernel_addr_c=0x04080000
 kernel_addr_no_bl32_r=0x00280000
 kernel_addr_r=0x00a80000

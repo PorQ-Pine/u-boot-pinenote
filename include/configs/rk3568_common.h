@@ -88,7 +88,7 @@
 	"bootcmd=setenv stdin serial,pwr_key_stdin,touch_keys; bootmenu 15\0" \
 	"bootmenu_0=Boot Quill OS=sysboot mmc 0:5 any ${scriptaddr} /boot/extlinux/extlinux.conf\0" \
 	"bootmenu_1=Boot Recovery OS=sysboot mmc 0:6 any ${scriptaddr} /boot/extlinux/extlinux.conf\0" \
-	"bootmenu_2=UMS mode=ums 0 mmc 0\0"
+	"bootmenu_2=Kernel/FDT serial download=echo Please provide Image.gz; loady ${kernel_addr_c}; echo Please provide FDT; loady ${fdt_addr_r}; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}\0"
 
 #define CONFIG_EXTRA_ENV_SETTINGS \
 	ENV_MEM_LAYOUT_SETTINGS \
