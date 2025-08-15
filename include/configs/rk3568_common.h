@@ -86,10 +86,12 @@
 
 #define ENV_BOOTMENU_ENTRIES \
 	"bootcmd=setenv stdin serial,pwr_key_stdin,touch_keys; bootmenu 15\0" \
-	"bootmenu_0=Boot Quill OS=setenv bootargs root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init ignore_loglevel rw rootwait earlycon console=ttyS2,1500000n8 fw_devlink=off loglevel=3 vt.global_cursor_default=0 RUST_LOG=info SLINT_KMS_ROTATION=270; ext4load mmc 0:6 ${kernel_addr_c} /boot/Image.gz; ext4load mmc 0:6 ${fdt_addr_r} /boot/DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}\0" \
-	"bootmenu_1=Boot Quill OS recovery=setenv bootargs root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init ignore_loglevel rw rootwait earlycon console=ttyS2,1500000n8 fw_devlink=off loglevel=3 vt.global_cursor_default=0 quill_recovery=1 RUST_LOG=info SLINT_KMS_ROTATION=270; ext4load mmc 0:6 ${kernel_addr_c} /boot/Image.gz; ext4load mmc 0:6 ${fdt_addr_r} /boot/DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}\0" \
+	"bootmenu_0=Boot Quill OS=setenv bootargs root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init ignore_loglevel rw rootwait earlycon console=ttyS2,1500000n8 fw_devlink=off loglevel=3 vt.global_cursor_default=0 RUST_LOG=info SLINT_KMS_ROTATION=270; ext4load mmc 0:7 ${kernel_addr_c} /Image.gz; ext4load mmc 0:7 ${fdt_addr_r} /DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}\0" \
+	"bootmenu_1=Boot Quill OS recovery=setenv bootargs root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init ignore_loglevel rw rootwait earlycon console=ttyS2,1500000n8 fw_devlink=off loglevel=3 vt.global_cursor_default=0 quill_recovery=1 RUST_LOG=info SLINT_KMS_ROTATION=270; ext4load mmc 0:7 ${kernel_addr_c} /Image.gz; ext4load mmc 0:7 ${fdt_addr_r} /DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}\0" \
 	"bootmenu_2=Boot recovery OS=sysboot mmc 0:5 any ${scriptaddr} /boot/extlinux/extlinux.conf\0" \
-	"bootmenu_3=Kernel/FDT serial download=echo Please provide Image.gz; loady ${kernel_addr_c}; echo Please provide FDT; loady ${fdt_addr_r}; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}\0"
+	"bootmenu_3=Boot UMS kernel=mmc read ${kernel_addr_c} 0x35800 0x4000; mmc read ${fdt_addr_r} 0x39800 0x400; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}\0" \
+	"bootmenu_4=Kernel/FDT serial download=echo Please provide Image.gz; loady ${kernel_addr_c}; echo Please provide FDT; loady ${fdt_addr_r}; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}\0" \
+	"bootmenu_5=RockUSB mode=rockusb 0 mmc 0\0"
 
 #define CONFIG_EXTRA_ENV_SETTINGS \
 	ENV_MEM_LAYOUT_SETTINGS \

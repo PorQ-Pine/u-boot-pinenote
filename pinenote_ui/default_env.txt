@@ -18,10 +18,12 @@ bootcmd_mmc1=setenv devnum 1; run mmc_boot
 bootcmd_pxe=run boot_net_usb_start; dhcp; if pxe get; then pxe boot; fi
 bootcmd_usb0=setenv devnum 0; run usb_boot
 bootdelay=0
-bootmenu_0=Boot Quill OS=setenv bootargs root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init ignore_loglevel rw rootwait earlycon console=ttyS2,1500000n8 fw_devlink=off loglevel=3 vt.global_cursor_default=0; ext4load mmc 0:6 ${kernel_addr_c} /boot/Image.gz; ext4load mmc 0:6 ${fdt_addr_r} /boot/DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
-bootmenu_1=Boot Quill OS recovery=setenv bootargs root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init ignore_loglevel rw rootwait earlycon console=ttyS2,1500000n8 fw_devlink=off loglevel=3 vt.global_cursor_default=0 quill_recovery=1; ext4load mmc 0:6 ${kernel_addr_c} /boot/Image.gz; ext4load mmc 0:6 ${fdt_addr_r} /boot/DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
+bootmenu_0=Boot Quill OS=setenv bootargs root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init ignore_loglevel rw rootwait earlycon console=ttyS2,1500000n8 fw_devlink=off loglevel=3 vt.global_cursor_default=0 RUST_LOG=info SLINT_KMS_ROTATION=270; ext4load mmc 0:7 ${kernel_addr_c} /Image.gz; ext4load mmc 0:7 ${fdt_addr_r} /DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
+bootmenu_1=Boot Quill OS recovery=setenv bootargs root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init ignore_loglevel rw rootwait earlycon console=ttyS2,1500000n8 fw_devlink=off loglevel=3 vt.global_cursor_default=0 quill_recovery=1 RUST_LOG=info SLINT_KMS_ROTATION=270; ext4load mmc 0:7 ${kernel_addr_c} /Image.gz; ext4load mmc 0:7 ${fdt_addr_r} /DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
 bootmenu_2=Boot recovery OS=sysboot mmc 0:5 any ${scriptaddr} /boot/extlinux/extlinux.conf
-bootmenu_3=Kernel/FDT serial download=echo Please provide Image.gz; loady ${kernel_addr_c}; echo Please provide FDT; loady ${fdt_addr_r}; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
+bootmenu_3=Boot UMS kernel=mmc read ${kernel_addr_c} 0x35800 0x4000; mmc read ${fdt_addr_r} 0x39800 0x400; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
+bootmenu_4=Kernel/FDT serial download=echo Please provide Image.gz; loady ${kernel_addr_c}; echo Please provide FDT; loady ${fdt_addr_r}; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
+bootmenu_5=RockUSB mode=rockusb 0 mmc 0
 cpu=armv8
 devnum=0
 devtype=mmc
@@ -30,7 +32,7 @@ efi_dtb_prefixes=/ /dtb/ /dtb/current/
 eth1addr=72:da:00:3d:54:37
 ethaddr=6e:da:00:3d:54:37
 fdt_addr_r=0x0a100000
-fdtcontroladdr=0xeb9f7898
+fdtcontroladdr=0xeb9f79b8
 kernel_addr_c=0x04080000
 kernel_addr_no_bl32_r=0x00280000
 kernel_addr_r=0x00a80000

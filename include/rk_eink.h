@@ -26,6 +26,7 @@ enum type_logo {
 	EINK_BOOTMENU_4 = 1 << 14,
 	EINK_BOOTMENU_5 = 1 << 15,
 	EINK_BOOTMENU_6 = 1 << 16,
+	EINK_BOOTMENU_7 = 1 << 17,
 };
 
 enum update_mode {
