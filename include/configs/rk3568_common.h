@@ -85,7 +85,7 @@
 #include <config_distro_bootcmd.h>
 
 #define ENV_BOOTMENU_ENTRIES \
-	"bootcmd=setenv stdin serial,pwr_key_stdin,touch_keys; bootmenu 15\0" \
+	"bootcmd=setenv stdin serial,pwr_key_stdin,touch_keys; bootmenu 3\0" \
 	"bootmenu_0=Boot Quill OS=setenv bootargs ${kargs_base}; ext4load mmc 0:7 ${kernel_addr_c} /Image.gz; ext4load mmc 0:7 ${fdt_addr_r} /DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}\0" \
 	"bootmenu_1=Boot Quill OS recovery=setenv bootargs ${kargs_base} quill_recovery=1; ext4load mmc 0:7 ${kernel_addr_c} /Image.gz; ext4load mmc 0:7 ${fdt_addr_r} /DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}\0" \
 	"bootmenu_2=Boot recovery OS=sysboot mmc 0:5 any ${scriptaddr} /boot/extlinux/extlinux.conf\0" \
