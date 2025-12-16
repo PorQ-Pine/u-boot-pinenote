@@ -11,16 +11,16 @@ boot_script_dhcp=boot.scr.uimg
 boot_scripts=boot.scr.uimg boot.scr
 boot_targets=mmc1 mmc0 usb0 pxe dhcp
 bootargs=storagemedia=emmc androidboot.storagemedia=emmc androidboot.mode=normal  ebc_pmic.vcom=1450 ulogo_addr=0x116cb000 klogo_addr=0x10b82000
-bootcmd=setenv stdin serial,pwr_key_stdin,touch_keys; bootmenu 15
+bootcmd=setenv stdin serial,pwr_key_stdin,touch_keys; bootmenu 3
 bootcmd_dhcp=run boot_net_usb_start; if dhcp ${scriptaddr} ${boot_script_dhcp}; then source ${scriptaddr}; fi;setenv efi_fdtfile ${fdtfile}; setenv efi_old_vci ${bootp_vci};setenv efi_old_arch ${bootp_arch};setenv bootp_vci PXEClient:Arch:00011:UNDI:003000;setenv bootp_arch 0xb;if dhcp ${kernel_addr_r}; then tftpboot ${fdt_addr_r} dtb/${efi_fdtfile};if fdt addr ${fdt_addr_r}; then bootefi ${kernel_addr_r} ${fdt_addr_r}; else bootefi ${kernel_addr_r} ${fdtcontroladdr};fi;fi;setenv bootp_vci ${efi_old_vci};setenv bootp_arch ${efi_old_arch};setenv efi_fdtfile;setenv efi_old_arch;setenv efi_old_vci;
 bootcmd_mmc0=setenv devnum 0; run mmc_boot
 bootcmd_mmc1=setenv devnum 1; run mmc_boot
 bootcmd_pxe=run boot_net_usb_start; dhcp; if pxe get; then pxe boot; fi
 bootcmd_usb0=setenv devnum 0; run usb_boot
 bootdelay=0
-bootmenu_0=Boot Quill OS=setenv bootargs root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init ignore_loglevel rw rootwait earlycon console=ttyS2,1500000n8 fw_devlink=off loglevel=3 vt.global_cursor_default=0 RUST_LOG=info SLINT_KMS_ROTATION=270; ext4load mmc 0:7 ${kernel_addr_c} /Image.gz; ext4load mmc 0:7 ${fdt_addr_r} /DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
-bootmenu_1=Boot Quill OS recovery=setenv bootargs root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init ignore_loglevel rw rootwait earlycon console=ttyS2,1500000n8 fw_devlink=off loglevel=3 vt.global_cursor_default=0 quill_recovery=1 RUST_LOG=info SLINT_KMS_ROTATION=270; ext4load mmc 0:7 ${kernel_addr_c} /Image.gz; ext4load mmc 0:7 ${fdt_addr_r} /DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
-bootmenu_2=Boot recovery OS=sysboot mmc 0:5 any ${scriptaddr} /boot/extlinux/extlinux.conf
+bootmenu_0=Boot Quill OS=setenv bootargs ${kargs_base}; ext4load mmc 0:7 ${kernel_addr_c} /Image.gz; ext4load mmc 0:7 ${fdt_addr_r} /DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
+bootmenu_1=Boot Quill OS recovery=setenv bootargs ${kargs_base} quill_recovery=1; ext4load mmc 0:7 ${kernel_addr_c} /Image.gz; ext4load mmc 0:7 ${fdt_addr_r} /DTB; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
+bootmenu_2=Boot secondary OS=sysboot mmc 0:5 any ${scriptaddr} /boot/extlinux/extlinux.conf
 bootmenu_3=Boot UMS kernel=mmc read ${kernel_addr_c} 0x35800 0x4000; mmc read ${fdt_addr_r} 0x39800 0x400; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
 bootmenu_4=Kernel/FDT serial download=echo Please provide Image.gz; loady ${kernel_addr_c}; echo Please provide FDT; loady ${fdt_addr_r}; unzip ${kernel_addr_c} ${kernel_addr_r}; booti ${kernel_addr_r} - ${fdt_addr_r}
 bootmenu_5=RockUSB mode=rockusb 0 mmc 0
@@ -32,7 +32,8 @@ efi_dtb_prefixes=/ /dtb/ /dtb/current/
 eth1addr=72:da:00:3d:54:37
 ethaddr=6e:da:00:3d:54:37
 fdt_addr_r=0x0a100000
-fdtcontroladdr=0xeb9f79b8
+fdtcontroladdr=0xeb9f74b8
+kargs_base=root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init earlycon console=ttyS2,1500000n8 fw_devlink=off vt.global_cursor_default=0 RUST_LOG=info SLINT_KMS_ROTATION=270 SLINT_BACKEND_LINUXFB=1
 kernel_addr_c=0x04080000
 kernel_addr_no_bl32_r=0x00280000
 kernel_addr_r=0x00a80000
