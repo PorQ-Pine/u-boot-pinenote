@@ -100,7 +100,8 @@
 	RKIMG_DET_BOOTDEV \
 	BOOTENV \
 	ENV_BOOTMENU_ENTRIES \
-	"kargs_base=root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init earlycon console=ttyS2,1500000n8 fw_devlink=off vt.global_cursor_default=0 RUST_LOG=info SLINT_KMS_ROTATION=270 SLINT_BACKEND_LINUXFB=1"
+	"kargs_base=root=/dev/ram0 rootfstype=ramfs rdinit=/sbin/init earlycon console=ttyS2,1500000n8 fw_devlink=off vt.global_cursor_default=0 RUST_LOG=info SLINT_KMS_ROTATION=270 SLINT_BACKEND_LINUXFB=1\0" \
+	"preboot=echo ------------ Welcome to Quill OS ------------\0"
 
 #undef RKIMG_BOOTCOMMAND
 #define RKIMG_BOOTCOMMAND		\
