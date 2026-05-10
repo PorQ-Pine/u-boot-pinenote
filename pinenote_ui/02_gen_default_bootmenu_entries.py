@@ -129,7 +129,7 @@ def render_bootmenu_logos(uboot_entries):
         4,
     )
 
-    for bootmenu_entry in range(0, 7):
+    for bootmenu_entry in range(0, 8):
         if bootmenu_entry in uboot_entries:
             (title, cmd) = uboot_entries[bootmenu_entry]
         elif bootmenu_entry == max(list(uboot_entries.keys())) + 1:

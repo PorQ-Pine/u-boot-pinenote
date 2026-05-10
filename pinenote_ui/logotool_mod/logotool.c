@@ -30,7 +30,7 @@
 #define SCREEN_WIDTH 1872
 #define SCREEN_HEIGHT 1404
 #define LOGO_SIZE SCREEN_WIDTH * SCREEN_HEIGHT / 2
-#define LOGO_COUNT 19
+#define LOGO_COUNT 20
 #define COLOR_BITS 4
 
 #define ASSERTF(a, fmt, ...) do { if(!(a)) { fprintf(stderr, fmt, ##__VA_ARGS__); exit(1); } } while(0)
@@ -55,6 +55,7 @@ enum type_logo {
 	EINK_BOOTMENU_5 = 1 << 15,
 	EINK_BOOTMENU_6 = 1 << 16,
 	EINK_BOOTMENU_7 = 1 << 17,
+	EINK_BOOTMENU_8 = 1 << 18,
 };
 
 const enum type_logo USED_LOGOS[] = {
@@ -77,6 +78,7 @@ const enum type_logo USED_LOGOS[] = {
 	EINK_BOOTMENU_5,
 	EINK_BOOTMENU_6,
 	EINK_BOOTMENU_7,
+	EINK_BOOTMENU_8,
 };
 
 const char *logo_file_name(enum type_logo logo) {
@@ -119,6 +121,8 @@ const char *logo_file_name(enum type_logo logo) {
 	  return "logo_bootmenu_6.png";
 	case EINK_BOOTMENU_7:
 	  return "logo_bootmenu_7.png";
+	case EINK_BOOTMENU_8:
+	  return "logo_bootmenu_8.png";
     default:
       ASSERTF(0, "Invalid logo type 0x%x.\n", logo);
   }

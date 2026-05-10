@@ -230,6 +230,7 @@ static int get_addr_by_type(struct udevice *dev, u32 logo_type)
 	case EINK_BOOTMENU_5:
 	case EINK_BOOTMENU_6:
 	case EINK_BOOTMENU_7:
+	case EINK_BOOTMENU_8:
 		return (plat->disp_pbuf + offset);
 	default:
 		printf("invalid logo type[%d]\n", logo_type);
